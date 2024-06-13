@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-jQRY0RIbbXv5K1n2J19Nq+91B3heJHeFL1h4VppEikTgZhBc+6T7LVkde+NXeI0su1woFSHqj3GnOpN8nY4bnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-color: #ffffffd9;
+        }
+
+        .header {
+            width: 100%;
+            height: 60px;
+            background-color: #0050d5d9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid #0050d5d9;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .menu-toggle {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-profile img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .user-info {
+            display: none;
+        }
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: grey;
+        }
+
+        @media (min-width: 768px) {
+            .user-info {
+                display: block;
+            }
+        }
+
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background-color: #0050d5d9;
+            color: #fff;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            background-color: #0050d5d9;
+        }
+
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .sidebar-menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid #0050d5d9;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #cfd8dc;
+            text-decoration: none;
+        }
+
+        .sidebar-menu li a:hover {
+            background-color: #16203d;
+        }
+
+        .sidebar-menu li a i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .sidebar-menu li a span {
+            font-size: 16px;
+        }
+
+        .sidebar-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .main-content {
+            margin-left: 220px;
+            padding: 80px 20px;
+            flex-grow: 1;
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .content-header h1 {
+            margin: 0;
+        }
+
+        .class-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .class-card h2 {
+            margin-top: 0;
+        }
+
+        .class-description {
+            margin-bottom: 20px;
+        }
+
+        .class-schedule {
+            margin-bottom: 20px;
+        }
+
+        .class-schedule table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .class-schedule th, .class-schedule td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .class-schedule th {
+            background-color: #0050d5d9;
+            color: white;
+        }
+
+        .class-schedule tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="header-right">
+            <div class="icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="user-profile">
+                <img src="user-profile.jpg" alt="User Profile">
+                <div class="user-info">
+                    <span class="user-name">Usuario</span>
+                    <span class="user-role">Admin</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-bolt"></i> PowerFit</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="p.html"><i class="fas fa-tachometer-alt"></i><span>Volver</span></a></li>
+            <li><a href="dash.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li><a href="Clientes.html"><i class="fas fa-exchange-alt"></i><span>Gestion de clientes</span></a></li>
+            <li><a href="clases.html"><i class="fas fa-chart-bar"></i><span>Clases y Eventos</span></a></li>
+            <li><a href="rendimiento.html"><i class="fas fa-list"></i><span>Rendimiento Financiero</span></a></li>
+            <li><a href="Empleados.html"><i class="fas fa-chart-line"></i><span>Gestion de empleados</span></a></li>
+            <li><a href="edit.html"><i class="fas fa-file-alt"></i><span>personalización</span></a></li>
+            <li><a href="ubi.html"><i class="fas fa-map"></i><span>Ubicacion</span></a></li>
+        </ul>
+    </aside>
+    <div class="main-content">
+        <div class="content-header">
+            <h1>Clases y Eventos</h1>
+        </div>
+        <div class="class-card">
+            <h2>Zumba</h2>
+            <p class="class-description">La clase de Zumba combina ritmos latinos con ejercicios de cardio, creando una experiencia divertida y efectiva para quemar calorías.</p>
+            <div class="class-schedule">
+                <h3>Horario</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Hora</th>
+                            <th>Instructor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lunes</td>
+                            <td>10:00 AM - 11:00 AM</td>
+                            <td>María Pérez</td>
+                        </tr>
+                        <tr>
+                            <td>Miércoles</td>
+                            <td>6:00 PM - 7:00 PM</td>
+                            <td>Juan López</td>
+                        </tr>
+                        <tr>
+                            <td>Viernes</td>
+                            <td>5:00 PM - 6:00 PM</td>
+                            <td>Laura Gómez</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="class-card">
+            <h2>Calistenia</h2>
+            <p class="class-description">La clase de Calistenia se enfoca en el entrenamiento con el peso corporal, mejorando la fuerza, la flexibilidad y la coordinación.</p>
+            <div class="class-schedule">
+                <h3>Horario</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Hora</th>
+                            <th>Instructor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Martes</td>
+                            <td>7:00 AM - 8:00 AM</td>
+                            <td>Carlos Martínez</td>
+                        </tr>
+                        <tr>
+                            <td>Jueves</td>
+                            <td>6:00 PM - 7:00 PM</td>
+                            <td>Ana Torres</td>
+                        </tr>
+                        <tr>
+                            <td>Sábado</td>
+                            <td>10:00 AM - 11:00 AM</td>
+                            <td>José Ramírez</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="class-card">
+            <h2>Boxeo</h2>
+            <p class="class-description">La clase de Boxeo proporciona un entrenamiento completo, mejorando la resistencia cardiovascular, la fuerza y la agilidad.</p>
+            <div class="class-schedule">
+                <h3>Horario</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Hora</th>
+                            <th>Instructor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lunes</td>
+                            <td>6:00 PM - 7:00 PM</td>
+                            <td>Pedro Sánchez</td>
+                        </tr>
+                        <tr>
+                            <td>Miércoles</td>
+                            <td>7:00 PM - 8:00 PM</td>
+                            <td>Carlos Herrera</td>
+                        </tr>
+                        <tr>
+                            <td>Viernes</td>
+                            <td>8:00 PM - 9:00 PM</td>
+                            <td>Martina Ruiz</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
